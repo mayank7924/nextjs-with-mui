@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import UserList from "../src/components/UserList";
 import * as React from "react";
@@ -15,14 +14,21 @@ export default function Home() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("https://reqres.in/api/users?page=1")
-      .then((data) => data.json())
-      .then((users) => setUsers(users.data));
+      fetch("https://reqres.in/api/users?page=1")
+        .then((data) => data.json())
+        .then((users) => setUsers(users.data));
   }, []);
 
+  const handleClick = () => {
+    fetch("https://reqres.in/api/users?page=2")
+    .then((data) => data.json())
+    .then((users) => setUsers(users.data));
+  }
+
   return (
-    <div className={styles.container}>
+    <div>
       <Box sx={{ flexGrow: 1 }}>
+        <button onClick={handleClick}>Hit API</button>
         <AppBar position="static">
           <Toolbar>
             <IconButton
@@ -46,14 +52,14 @@ export default function Home() {
         <meta name="description" content="User CRUD app" />
       </Head>
       <main>
-        <h1 className={styles.title}>User Management tool</h1>
+        <h1>User Management tool</h1>
         {/* <h3>Navigate to:</h3> */}
         <p>Users List</p>
         <UserList users={users} />
       </main>
 
-      <footer className={styles.footer}>
-        <span className={styles.logo}>Placeholder for footer</span>
+      <footer>
+        <span>Placeholder for footer</span>
       </footer>
     </div>
   );

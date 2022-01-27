@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "../../styles/Home.module.css";
 import Image from "next/image";
 
 export default function UserList(props) {
@@ -15,10 +14,10 @@ export default function UserList(props) {
         </tr>
         {props.users.map((user) => (
           <tr key={user.id}>
-            <td className={styles.td}>{user.id}</td>
-            <td className={styles.td}>{user.first_name}</td>
-            <td className={styles.td}>{user.last_name}</td>
-            <td className={styles.td}>{user.email}</td>
+            <td>{user.id}</td>
+            <td>{user.first_name}</td>
+            <td>{user.last_name}</td>
+            <td>{user.email}</td>
             <td>
               <Image
                 src={user.avatar}
